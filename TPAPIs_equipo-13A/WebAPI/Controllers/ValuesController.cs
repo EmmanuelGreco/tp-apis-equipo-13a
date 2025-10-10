@@ -9,6 +9,7 @@ namespace WebAPI.Controllers
 {
     public class ValuesController : ApiController
     {
+        /*
         // GET api/values
         public IEnumerable<string> Get()
         {
@@ -35,5 +36,6 @@ namespace WebAPI.Controllers
         public void Delete(int id)
         {
         }
+        */
     }
 }
