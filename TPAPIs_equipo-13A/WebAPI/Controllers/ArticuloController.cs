@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using Dominio;
 using Negocio;
+using WebAPI.Models;
 
 namespace WebAPI.Controllers
 {
@@ -28,8 +29,19 @@ namespace WebAPI.Controllers
         }
 
         // POST: api/Articulo
-        public void Post([FromBody]string value)
+        public void Post([FromBody]ArticuloDTO articulo)
         {
+            ArticuloNegocio negocio = new ArticuloNegocio();
+            Articulo nuevo = new Articulo();
+
+            nuevo.Codigo = articulo.Codigo;
+            nuevo.Nombre = articulo.Nombre;
+            nuevo.Descripcion = articulo.Descripcion;
+            nuevo.Marca = new Marca { Id = articulo.IdMarca };
+            nuevo.Categoria = new Categoria { Id =  articulo.IdCategoria };
+            nuevo.Precio = articulo.Precio;
+
+            negocio.agregar(nuevo);
         }
 
         // PUT: api/Articulo/5
