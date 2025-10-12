@@ -45,8 +45,20 @@ namespace WebAPI.Controllers
         }
 
         // PUT: api/Articulo/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody] ArticuloDTO articulo)
         {
+            ArticuloNegocio negocio = new ArticuloNegocio();
+            Articulo existente = new Articulo();
+
+            existente.Id = id;
+            existente.Codigo = articulo.Codigo;
+            existente.Nombre = articulo.Nombre;
+            existente.Descripcion = articulo.Descripcion;
+            existente.Marca = new Marca { Id = articulo.IdMarca };
+            existente.Categoria = new Categoria { Id = articulo.IdCategoria };
+            existente.Precio = articulo.Precio;
+
+            negocio.modificar(existente);
         }
 
         // DELETE: api/Articulo/5
