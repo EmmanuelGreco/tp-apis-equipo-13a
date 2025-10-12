@@ -89,9 +89,9 @@ namespace Negocio
                 datos.setearParametro("@idCategoria", nuevo.Categoria.Id);
                 datos.setearParametro("@precio", nuevo.Precio);
 
-                int idArticulo = 0;                   
+                //int idArticulo = 0;
                 datos.ejecutarLectura();
-
+                /*
                 if (datos.Lector.Read())
                 {
                     idArticulo = Convert.ToInt32(datos.Lector[0]);
@@ -103,6 +103,7 @@ namespace Negocio
                     ImagenNegocio imagenNegocio = new ImagenNegocio();
                     imagenNegocio.agregarImagenes(idArticulo, nuevo.ListaImagen);
                 }
+                */
             }
             catch (Exception ex)
             {
@@ -137,25 +138,27 @@ namespace Negocio
                 datos.setearParametro("@id", existente.Id);
                 datos.ejecutarAccion();
 
-                // ACCIONES VIEJAS, DEL TP ANTERIOR.
-                //datos.cerrarConexion();
+                /*
+                //ACCIONES VIEJAS, DEL TP ANTERIOR.
+                datos.cerrarConexion();
 
-                //// Lista de los IDS Actuales
-                //List<int> idsActuales = imagenNegocio.obtenerImagenesActuales(existente.Id);
+                // Lista de los IDS Actuales
+                List<int> idsActuales = imagenNegocio.obtenerImagenesActuales(existente.Id);
 
-                //// Lista de los IDS que se quieren conservar
-                //List<int> idsConservados = new List<int>();
-                //foreach (var imagen in existente.ListaImagen)
-                //{
-                //    if (imagen.Id != 0)
-                //        idsConservados.Add(imagen.Id);
-                //}
+                // Lista de los IDS que se quieren conservar
+                List<int> idsConservados = new List<int>();
+                foreach (var imagen in existente.ListaImagen)
+                {
+                    if (imagen.Id != 0)
+                        idsConservados.Add(imagen.Id);
+                }
 
-                //// Elimino las que ya no se usan
-                //imagenNegocio.eliminarImagenesNoUsadas(idsActuales, idsConservados);
+                // Elimino las que ya no se usan
+                imagenNegocio.eliminarImagenesNoUsadas(idsActuales, idsConservados);
 
-                //// INSERT / UPDATE de las imagenes restantes
-                //imagenNegocio.insertarActualizarImagenes(existente.ListaImagen, existente.Id);
+                // INSERT / UPDATE de las imagenes restantes
+                imagenNegocio.insertarActualizarImagenes(existente.ListaImagen, existente.Id);
+                */
             }
             catch (Exception ex)
             {
