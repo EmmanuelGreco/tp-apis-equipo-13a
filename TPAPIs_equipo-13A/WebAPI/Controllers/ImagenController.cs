@@ -29,8 +29,9 @@ namespace WebAPI.Controllers
         */
 
         // POST: api/Imagen
-        public void Post([FromBody] ImagenesArticuloDTO imagenesArticulo)
+        public HttpResponseMessage Post([FromBody] ImagenesArticuloDTO imagenesArticulo)
         {
+            try
             {
                 ImagenNegocio negocio = new ImagenNegocio();
 
@@ -39,6 +40,11 @@ namespace WebAPI.Controllers
                     .ToList();
 
                 negocio.agregarImagenes(imagenesArticulo.IdArticulo, listaImagenes);
+                return Request.CreateResponse(HttpStatusCode.OK, new { Message = "Imagen(es) agregada(s) correctamente." });
+            }
+            catch (Exception)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Ocurrió un error en el servidor.");
             }
         }
 
